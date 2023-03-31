@@ -61,7 +61,7 @@ class NetworkLayerService: NSObject, NetworkLayerProtocol {
             .tryMap { result -> NetworkResponse<T> in
                 guard self.isSuccessCode(result.response) else {                    
                     Utility.printIfDebug(string: "ERROR occured fetching data: \(result.response)")
-                    throw AppError.genericError
+                    throw AppError.fetchDataError
                 }
                 let value = try JSONDecoder().decode(T.self, from: result.data)
                 return NetworkResponse(value: value, response: result.response)

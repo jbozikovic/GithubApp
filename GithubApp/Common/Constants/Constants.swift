@@ -81,6 +81,7 @@ enum AppStrings: String {
     case email = "email"
     case enterSearchTerm = "enter_search_term"
     case errorOccured = "error"
+    case fetchDataFailed = "fetch_data_failed"
     case followers = "followers"
     case forks = "forks"
     case genericErrorMessage = "error_occurred_try_again"
@@ -151,11 +152,9 @@ enum HTTPCode: Int {
 //  MARK: - AppError
 enum AppError: Error {
     case genericError
-    case invalidCredentials
-    case invalidPassword
     case noData
     case noInternet
-    case passwordTooShort
+    case fetchDataError
 }
 
 extension AppError: LocalizedError {
@@ -165,6 +164,8 @@ extension AppError: LocalizedError {
             return AppStrings.noData.rawValue
         case .noInternet:
             return AppStrings.noInternet.localized
+        case .fetchDataError:
+            return AppStrings.fetchDataFailed.localized
         default:
             return AppStrings.genericErrorMessage.localized
         }

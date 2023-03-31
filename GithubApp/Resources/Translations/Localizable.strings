@@ -35,3 +35,4 @@
 "registration_date" = "Registration";
 "followers" = "followers";
 "no_data" = "Nothing found.";
+"fetch_data_failed" = "Fetching data failed with error. Please try again or contact us.";

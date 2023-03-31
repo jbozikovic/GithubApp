@@ -40,8 +40,8 @@ class AppCoordinator: Coordinator {
     // MARK: - Initializer
     init(window: UIWindow?) {
         self.window = window
-        self.presenter = UINavigationController()
-        self.childCoordinators = []        
+        presenter = UINavigationController()
+        childCoordinators = []
     }
     
     func start() {
