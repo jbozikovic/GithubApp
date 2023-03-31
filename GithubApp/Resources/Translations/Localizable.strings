@@ -1,0 +1,37 @@
+/* 
+  Localizable.strings
+  GithubApp
+
+  Created by Jurica Bozikovic on 27.03.2023..
+  Copyright © 2023 CocodeLab. All rights reserved.
+*/
+
+"cancel" = "Cancel";
+"error" = "Error";
+"error_occurred_try_again" = "An error occurred. Please try again.";
+"no_internet_connection" = "Please check your internet connection.";
+"ok" = "OK";
+"author" = "Author";
+"watchers" = "watchers";
+"forks" = "forks";
+"issues" = "issues";
+"repositories" = "Repositories";
+"enter_search_term" = "Please enter search term to display list of repositories";
+"search_repositories" = "Search repositories";
+"sort" = "Sort";
+"sort_desc" = "Choose how you want to sort repositories";
+"date_updated" = "Date updated";
+"stars" = "stars";
+"date_created" = "Date created";
+"language" = "Language";
+"license" = "License";
+"topic" = "Topic";
+"not_available" = "Not available";
+"view_on_web" = "Open in browser";
+"user_type" = "Type";
+"location" = "Location";
+"blog" = "Blog";
+"email" = "E-mail";
+"registration_date" = "Registration";
+"followers" = "followers";
+"no_data" = "Nothing found.";

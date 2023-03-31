@@ -1,14 +1,18 @@
 //
-//  GithubAppTests.swift
+//  RespositoryAPITests.swift
 //  GithubAppTests
 //
-//  Created by Jurica Bozikovic on 22.03.2023..
+//  Created by Jurica Bozikovic on 31.03.2023..
+//  Copyright © 2023 CocodeLab. All rights reserved.
 //
 
 import XCTest
 @testable import GithubApp
+import Combine
 
-final class GithubAppTests: XCTestCase {
+final class RespositoryAPITests: XCTestCase {
+    private var cancellables = Set<AnyCancellable>()
+    
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
@@ -31,21 +35,25 @@ final class GithubAppTests: XCTestCase {
             // Put the code you want to measure the time of here.
         }
     }
-    
-    func testShortenedInt() {
-        let input = 11255
-        let expected = "11.3K"
-        XCTAssertEqual(input.shortened(), expected, "Not the same")
-    }
-    
-    func testStringNilOrEmpty() {
-        let input: String? = nil
-        XCTAssertEqual(input.isNilOrEmpty, true, "Not satisfied")
-    }
 
-    func testIsValidUrl() {
-        let input = "http://www.google.com"
-        let url = Utility.isValidUrl(urlString: input)
-        XCTAssertEqual(url != nil, true, "testIsValidUrl not satisfied")
-    }    
+    func testGetRepositoriesFromAPI() {
+        let apiService = RepositoryAPIService(networkLayerService: NetworkLayerService())
+        let expectation = self.expectation(description: #function)
+        var error: Error? = nil
+        var repos: [Repository] = []
+        apiService.searchRepositories(term: "swift", sort: "stars", itemsPerPage: 30, page: 1).sink { completion in
+            switch completion {
+            case .failure(let apiError):
+                error = apiError
+            case .finished:
+                break
+            }
+            expectation.fulfill()
+        } receiveValue: { response in
+            repos = response.repositories
+        }.store(in: &cancellables)
+        waitForExpectations(timeout: 10)
+        XCTAssertNil(error)
+        XCTAssertEqual(repos.isEmpty, false, "Not ok, array shouldn't be empty")
+    }
 }

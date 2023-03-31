@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ImageWithLabelView" customModule="GithubApp" customModuleProvider="target">
+            <connections>
+                <outlet property="iconImageView" destination="sfv-7f-lJW" id="LVI-FT-ytP"/>
+                <outlet property="titleLabel" destination="Fjt-jo-beg" id="7Wn-pL-76D"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="100" height="16"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sfv-7f-lJW" userLabel="iconImageView">
+                    <rect key="frame" x="0.0" y="0.0" width="16" height="16"/>
+                    <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="16" id="Xcr-B6-dMI"/>
+                        <constraint firstAttribute="width" constant="16" id="iDs-0l-9EB"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fjt-jo-beg" userLabel="titleLabel">
+                    <rect key="frame" x="18" y="0.0" width="82" height="16"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="16" id="JJW-VO-pob"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="Fjt-jo-beg" firstAttribute="centerY" secondItem="sfv-7f-lJW" secondAttribute="centerY" id="ArK-yL-sSI"/>
+                <constraint firstItem="Fjt-jo-beg" firstAttribute="leading" secondItem="sfv-7f-lJW" secondAttribute="trailing" constant="2" id="MH5-8H-UDB"/>
+                <constraint firstAttribute="trailing" secondItem="Fjt-jo-beg" secondAttribute="trailing" id="Si6-c6-ZtN"/>
+                <constraint firstItem="sfv-7f-lJW" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="tlh-OK-wlB"/>
+                <constraint firstItem="sfv-7f-lJW" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="wHH-Rc-YMm"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="131" y="-11"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

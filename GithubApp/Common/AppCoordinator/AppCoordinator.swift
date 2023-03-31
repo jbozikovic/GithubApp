@@ -48,5 +48,16 @@ class AppCoordinator: Coordinator {
         guard let window = self.window else { return }
         window.rootViewController = presenter
         window.makeKeyAndVisible()
+        startRepositoriesCoordinator()
+    }
+}
+
+
+//  MARK: - RepositoriesCoordinator
+private extension AppCoordinator {
+    func startRepositoriesCoordinator() {
+        let coordinator = RepositoriesCoordinator(presenter: presenter)
+        self.addChildCoordinator(coordinator: coordinator)
+        coordinator.start()
     }
 }

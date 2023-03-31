@@ -1,14 +1,18 @@
 //
-//  GithubAppTests.swift
+//  UserAPITests.swift
 //  GithubAppTests
 //
-//  Created by Jurica Bozikovic on 22.03.2023..
+//  Created by Jurica Bozikovic on 31.03.2023..
+//  Copyright © 2023 CocodeLab. All rights reserved.
 //
 
 import XCTest
 @testable import GithubApp
+import Combine
 
-final class GithubAppTests: XCTestCase {
+final class UserAPITests: XCTestCase {
+    private var cancellables = Set<AnyCancellable>()
+    
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
@@ -32,20 +36,24 @@ final class GithubAppTests: XCTestCase {
         }
     }
     
-    func testShortenedInt() {
-        let input = 11255
-        let expected = "11.3K"
-        XCTAssertEqual(input.shortened(), expected, "Not the same")
+    func testGetUserFromAPI() {
+        let apiService = UsersAPIService(networkLayerService: NetworkLayerService())
+        let expectation = self.expectation(description: #function)
+        var error: Error? = nil
+        var user: User? = nil
+        apiService.getUser(username: "alamofire").sink { completion in
+            switch completion {
+            case .failure (let apiError):
+                error = apiError
+            case .finished:
+                break
+            }
+            expectation.fulfill()
+        } receiveValue: { fetchedUser in
+            user = fetchedUser
+        }.store(in: &cancellables)
+        waitForExpectations(timeout: 10)
+        XCTAssertNil(error)
+        XCTAssertEqual(user == nil, false, "User NOT fetched from API")
     }
-    
-    func testStringNilOrEmpty() {
-        let input: String? = nil
-        XCTAssertEqual(input.isNilOrEmpty, true, "Not satisfied")
-    }
-
-    func testIsValidUrl() {
-        let input = "http://www.google.com"
-        let url = Utility.isValidUrl(urlString: input)
-        XCTAssertEqual(url != nil, true, "testIsValidUrl not satisfied")
-    }    
 }
