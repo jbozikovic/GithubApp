@@ -56,7 +56,7 @@ class AppCoordinator: Coordinator {
 //  MARK: - RepositoriesCoordinator
 private extension AppCoordinator {
     func startRepositoriesCoordinator() {
-        let coordinator = RepositoriesCoordinator(presenter: presenter)
+        let coordinator = RepositoriesCoordinator(presenter: presenter, appPermissionsService: AppPermissionsService())
         self.addChildCoordinator(coordinator: coordinator)
         coordinator.start()
     }

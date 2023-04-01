@@ -15,11 +15,13 @@ class RepositoriesCoordinator: Coordinator {
     var viewModel: RepositoriesViewModel?
     var repository: RepositoryListRepository
     private var cancellables = Set<AnyCancellable>()
+    private var appPermissionsService: AppPermissionsProtocol
     
     private let networkLayerService: NetworkLayerProtocol = NetworkLayerService()
         
-    init(presenter: UINavigationController) {
+    init(presenter: UINavigationController, appPermissionsService: AppPermissionsProtocol) {
         self.presenter = presenter
+        self.appPermissionsService = appPermissionsService
         childCoordinators = []
         let apiService = RepositoryAPIService(networkLayerService: networkLayerService)
         repository = RepositoryListRepository(apiService: apiService)
@@ -43,14 +45,14 @@ private extension RepositoriesCoordinator {
     func handleDidTapRepoPublisher() {
         viewModel?.didTapRepo.sink { [weak self] (repo) in
             guard let weakSelf = self else { return }
-            weakSelf.navigateToRepositoryDetails(repository: repo)
+            weakSelf.navigateToRepositoryDetailsIfPossible(repository: repo)
         }.store(in: &cancellables)
     }
     
     func handleDidTapUserAvatarPublisher() {
         viewModel?.didTapUserAvatar.sink { [weak self] (username) in
             guard let weakSelf = self else { return }
-            weakSelf.navigateToUserDetails(username: username)
+            weakSelf.navigateToUserDetailsIfPossible(username: username)
         }.store(in: &cancellables)
     }
 }
@@ -68,6 +70,11 @@ private extension RepositoriesCoordinator {
 
 //  MARK: - Repository details
 private extension RepositoriesCoordinator {
+    func navigateToRepositoryDetailsIfPossible(repository: Repository) {
+        guard appPermissionsService.canNavigateToRepoDetails else { return }
+        navigateToRepositoryDetails(repository: repository)
+    }
+        
     func navigateToRepositoryDetails(repository: Repository) {
         let vc = RepositoryDetailsViewController(viewModel: repoDetailsViewModel(repositoryItem: repository))
         presenter.pushViewController(vc, animated: true)
@@ -77,7 +84,7 @@ private extension RepositoriesCoordinator {
         let viewModel = RepositoryDetailsViewModel(repositoryItem: repositoryItem)
         viewModel.didTapAuthor.sink { [weak self] (username) in
             guard let weakSelf = self else { return }
-            weakSelf.navigateToUserDetails(username: username)
+            weakSelf.navigateToUserDetailsIfPossible(username: username)
         }.store(in: &cancellables)
         viewModel.didTapMoreInfo.sink { [weak self] url in
             guard let weakSelf = self else { return }
@@ -95,6 +102,11 @@ private extension RepositoriesCoordinator {
     }
     var userDetailsAPIService: UsersAPIProtocol {
         return UsersAPIService(networkLayerService: networkLayerService)
+    }
+    
+    func navigateToUserDetailsIfPossible(username: String) {
+        guard appPermissionsService.canNavigateToUserDetails else { return }
+        navigateToUserDetails(username: username)
     }
     
     func navigateToUserDetails(username: String) {
