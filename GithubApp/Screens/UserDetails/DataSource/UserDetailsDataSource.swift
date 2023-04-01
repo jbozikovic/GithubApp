@@ -22,7 +22,7 @@ extension UserDetailsDataSource: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: DetailsCell.reuseIdentifier, for: indexPath) as! DetailsCell
         if let item: DetailsCellViewModel = viewModel.getItemAtIndex(indexPath.row) {
-            cell.setupCell(viewModel: item)            
+            cell.configure(item)
         }
         return cell
     }

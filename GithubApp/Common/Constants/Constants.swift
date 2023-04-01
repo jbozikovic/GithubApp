@@ -19,6 +19,7 @@ struct Constants {
     static let numberOfItemsPerPage: Int = 30
     static let dateFormat: String = "MMM dd, yyyy"
     static let dateFormatFull: String = "yyyy-MM-dd HH:mm:ss"
+    static let zeroString = "0"
 }
 
 
@@ -26,7 +27,7 @@ struct Constants {
 struct AppConfig {
     private init() {}
     
-    static let githubAPIToken: String = "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"
+    static let githubAPIToken: String = "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"
 }
 
 

@@ -10,16 +10,16 @@ import UIKit
 import SDWebImage
 
 
-class RepositoryCell: UITableViewCell {
+class RepositoryCell: UITableViewCell, Configurable {
     @IBOutlet weak var authorImageView: UIImageView!
     @IBOutlet weak var repoNameLabel: UILabel!
     @IBOutlet weak var authorLabel: UILabel!
     @IBOutlet weak var issuesView: ImageWithLabelView!
     @IBOutlet weak var forksView: ImageWithLabelView!
     @IBOutlet weak var watchersView: ImageWithLabelView!
-        
     @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
     
+    typealias T = RepositoryCellViewModel    
     private var viewModel: RepositoryCellViewModel? = nil {
         didSet {
             fillData()
@@ -61,11 +61,15 @@ class RepositoryCell: UITableViewCell {
     }
 
     func setupCell(viewModel: RepositoryCellViewModel?) {
-        guard viewModel != nil else {
+        guard let vm = viewModel else {
             handleViewsVisibility(hidden: true)
             return
         }
-        self.viewModel = viewModel
+        configure(vm)
+    }
+    
+    func configure(_ item: RepositoryCellViewModel) {
+        self.viewModel = item
     }
     
     private func handleViewsVisibility(hidden: Bool) {

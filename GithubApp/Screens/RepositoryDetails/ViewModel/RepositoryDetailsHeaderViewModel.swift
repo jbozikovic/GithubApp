@@ -37,7 +37,7 @@ extension RepositoryDetailsHeaderViewModel {
         return repository.owner.userUrl
     }
     var stars: NSMutableAttributedString {
-        return "\(numberOfStarsFromatted) \(AppStrings.stars.localized)".boldText("\(numberOfStarsFromatted)", fontSize: 15.0)
+        return "\(numberOfStarsFromatted) \(AppStrings.stars.localized)".boldText("\(numberOfStarsFromatted)", fontSize: AppUI.bodyFontSize)
     }
     var starsIcon: UIImage? {
         return AppImages.star.image

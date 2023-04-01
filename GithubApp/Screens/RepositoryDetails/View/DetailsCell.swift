@@ -8,10 +8,12 @@
 
 import UIKit
 
-class DetailsCell: UITableViewCell {
+class DetailsCell: UITableViewCell, Configurable {
     @IBOutlet weak var captionLabel: UILabel!
     @IBOutlet weak var valueLabel: UILabel!
         
+    typealias T = DetailsCellViewModel
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -32,9 +34,9 @@ class DetailsCell: UITableViewCell {
         backgroundColor = .clear
     }
 
-    func setupCell(viewModel: DetailsCellViewModel) {
-        captionLabel.text = viewModel.caption
-        valueLabel.text = viewModel.value
+    func configure(_ item: DetailsCellViewModel) {
+        captionLabel.text = item.caption
+        valueLabel.text = item.value
     }
 }
 

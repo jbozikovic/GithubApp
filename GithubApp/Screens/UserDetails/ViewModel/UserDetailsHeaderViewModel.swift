@@ -19,11 +19,11 @@ class UserDetailsHeaderViewModel {
 //  MARK: - Computed properties (private)
 private extension UserDetailsHeaderViewModel {
     var numberOfFollowersFromatted: String {
-        guard let followers = user.followers else { return "0" }
+        guard let followers = user.followers else { return Constants.zeroString }
         return followers.shortened()
     }
     var numberOfPublicReposFromatted: String {
-        guard let numberOfPublicRepos = user.numberOfPublicRepos else { return "0" }
+        guard let numberOfPublicRepos = user.numberOfPublicRepos else { return Constants.zeroString }
         return numberOfPublicRepos.shortened()
     }
 }

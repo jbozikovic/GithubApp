@@ -93,8 +93,7 @@ extension RepositoryDetailsViewModel {
         return repositoryItem.repoUrl
     }
         
-    func getItemAtIndex(_ index: Int) -> DetailsCellViewModel? {
-        //  TODO: add array extension
+    func getItemAtIndex(_ index: Int) -> DetailsCellViewModel? {        
         guard !cellViewModels.isEmpty, index < cellViewModels.count else { return nil }
         return cellViewModels[index]
     }

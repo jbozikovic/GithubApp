@@ -50,7 +50,7 @@ extension RepositoryItemProtocol {
         return "\(AppStrings.author.localized): \(authorName)".boldText(AppStrings.author.localized)
     }
     var watchers: NSMutableAttributedString {
-        return "\(numberOfWatchersFormatted) \(AppStrings.watchers.localized)".boldText("\(numberOfWatchersFormatted)", fontSize: 15.0)
+        return "\(numberOfWatchersFormatted) \(AppStrings.watchers.localized)".boldText("\(numberOfWatchersFormatted)", fontSize: AppUI.bodyFontSize)
     }
     var forks: NSMutableAttributedString {
         return "\(numberOfForksFormatted) \(AppStrings.forks.localized)".boldText("\(numberOfForksFormatted)")
