@@ -27,7 +27,7 @@ struct Constants {
 struct AppConfig {
     private init() {}
     
-    static let githubAPIToken: String = "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"
+    static let githubAPIToken: String = "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"
 }
 
 
