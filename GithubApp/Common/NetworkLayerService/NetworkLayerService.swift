@@ -130,8 +130,7 @@ private extension NetworkLayerService {
     func defaultHttpHeader() -> [HTTPHeader] {
         let headers: [HTTPHeader] = [
             HTTPHeader(value: NetworkLayerServiceKeys.httpHeaderApplicationJSON, headerField: NetworkLayerServiceKeys.httpHeaderContentType),
-            HTTPHeader(value: NetworkLayerServiceKeys.httpHeaderApplicationJSON, headerField: NetworkLayerServiceKeys.httpHeaderAccept),
-            HTTPHeader(value: "token \(AppConfig.githubAPIToken)", headerField: NetworkLayerServiceKeys.httpHeaderAuthorization)
+            HTTPHeader(value: NetworkLayerServiceKeys.httpHeaderApplicationJSON, headerField: NetworkLayerServiceKeys.httpHeaderAccept)
         ]
         return headers
     }
